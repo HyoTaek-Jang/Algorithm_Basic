@@ -41,5 +41,22 @@ def night():
 # LRUD()
 # night()
 
-list = 'absc'.split()
-print(list)
+# 3009번 백준 네 번째 점
+# 네 점 중 두 점씩 잡으면 모두 길이가 같지 않을까 라는 가설에서 시작
+# 두 번째 아이디어 : 서로 직각이 되게 두 선분을 만듬. 그리고 공통된 점에서 a1의 차를 구함. 그 다음 그 차이를 a2에 적용 시키면 a4가 나옴.
+# 하아....개고생했는데 문제를 제대로 이해를 못했네... 축에 평행한.....
+def fourthPoint():
+    x_list = []
+    y_list = []
+    for i in range(3):
+        x,y = map(int, input().split())
+        x_list.append(x)
+        y_list.append(y)
+    for i in range(3):
+        if x_list.count(x_list[i]) == 1:
+            x = x_list[i]
+        if y_list.count(y_list[i]) == 1:
+            y = y_list[i]
+    print(x,y)
+
+fourthPoint()

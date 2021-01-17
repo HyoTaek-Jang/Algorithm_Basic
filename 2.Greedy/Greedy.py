@@ -52,3 +52,50 @@ def moreBigger(datas):
     print(value)
 
 moreBigger('567')
+
+# 백준 1439번 뒤집기
+def reverseCard():
+    card = input()
+    cardList = []
+    compList = []
+    for i in str(card):
+        if not cardList:
+            cardList.append(i)
+        else:
+            if(cardList[0] == i):
+                cardList.append(i)
+            else:
+                compList.append(''.join(cardList))
+                cardList.clear()
+                cardList.append(i)
+    compList.append(''.join(cardList))
+
+    num_1 = 0
+    num_0 = 0
+    for data in compList:
+        if data[0] == '1':
+            num_1 += 1
+        else:
+            num_0 += 1
+    print(num_0 if num_1>num_0 else num_1)
+    '''
+    str = input()
+
+    count_zero = 0
+    count_one = 0
+    num = -1
+    next = 0
+    
+    for i in range(0, len(str)):
+        next = int(str[i])
+        if num != next:
+            if next == 0:
+                count_zero += 1
+            else:
+                count_one += 1
+        num = next
+    
+    print(min(count_zero, count_one))
+    '''
+
+reverseCard()
