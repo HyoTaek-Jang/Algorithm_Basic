@@ -12,46 +12,49 @@
 큰 단위가 작읜 단위의 배수이기에 가능하다. 
 '''
 
+
 def makeOne(target, value):
     count = 0
-    while(target !=1):
-        if(target%value==0):
+    while (target != 1):
+        if (target % value == 0):
             target /= value
-            count+=1
+            count += 1
             continue
         target -= 1
         count += 1
     print(count)
 
+
 def makeOneSol(target, value):
     result = 0
     while True:
-        N = (target//value)*value
-        result += (target-N)
+        N = (target // value) * value
+        result += (target - N)
         target = N
-        if (target<value):
+        if (target < value):
             break
         target /= value
         result += 1
-    result += (target-1)
+    result += (target - 1)
     print(result)
 
-makeOne(25,3)
-makeOneSol(25,3)
+
+# makeOne(25,3)
+# makeOneSol(25,3)
 
 def moreBigger(datas):
-
     list = [int(a) for a in str(datas)]
     list.sort()
     value = 0
     for data in list:
-        if(value <= 1 or data <= 1):
+        if (value <= 1 or data <= 1):
             value += data
             continue
         value *= data
     print(value)
 
-moreBigger('567')
+
+# moreBigger('567')
 
 # 백준 1439번 뒤집기
 def reverseCard():
@@ -62,7 +65,7 @@ def reverseCard():
         if not cardList:
             cardList.append(i)
         else:
-            if(cardList[0] == i):
+            if (cardList[0] == i):
                 cardList.append(i)
             else:
                 compList.append(''.join(cardList))
@@ -77,7 +80,7 @@ def reverseCard():
             num_1 += 1
         else:
             num_0 += 1
-    print(num_0 if num_1>num_0 else num_1)
+    print(num_0 if num_1 > num_0 else num_1)
     '''
     str = input()
 
@@ -98,4 +101,28 @@ def reverseCard():
     print(min(count_zero, count_one))
     '''
 
-reverseCard()
+
+# reverseCard()
+
+# 12931번 두 배 더하기
+# 값을 계속 2씩 나눔. 만약 홀수가 있을 시 -1을 함.
+# 모든 값이 0이 될 때까지!
+
+def plusmul():
+    N = input()
+    value = list(map(int, input().split(' ')))
+    count = 0
+    while not int(max(value)) == 0:
+        mul = True
+        for i in range(len(value)):
+            if value[i] % 2 != 0:
+                value[i] -= 1
+                count += 1
+                mul = False
+        if mul:
+            value = [i / 2 for i in value]
+            count += 1
+    print(count)
+
+
+plusmul()

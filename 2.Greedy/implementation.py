@@ -17,18 +17,20 @@ def LRUD():
 
     for move in plan:
         for i in range(4):
-            if(move == moveList[i]):
-                dx = x+movex[i]
-                dy = y+movey[i]
-                if not(dx < 1 or dy < 1 or dx > N or dy > N):
+            if (move == moveList[i]):
+                dx = x + movex[i]
+                dy = y + movey[i]
+                if not (dx < 1 or dy < 1 or dx > N or dy > N):
                     x, y = dx, dy
-    print(x,y)
+    print(x, y)
+
 
 def night():
     value = input()
-    col = ord(value[0])-ord('a')+1
+    col = ord(value[0]) - ord('a') + 1
     row = int(value[1])
-    moveList = [(2,-1),(2,1),(-2,-1),(-2,1),(1,2),(-1,2),(1,-2),(-1,-2)]
+    moveList = [(2, -1), (2, 1), (-2, -1), (-2, 1), (1, 2), (-1, 2), (1, -2),
+                (-1, -2)]
     count = 0
     for move in moveList:
         dcol = col + move[0]
@@ -49,7 +51,7 @@ def fourthPoint():
     x_list = []
     y_list = []
     for i in range(3):
-        x,y = map(int, input().split())
+        x, y = map(int, input().split())
         x_list.append(x)
         y_list.append(y)
     for i in range(3):
@@ -57,6 +59,31 @@ def fourthPoint():
             x = x_list[i]
         if y_list.count(y_list[i]) == 1:
             y = y_list[i]
-    print(x,y)
+    print(x, y)
 
-fourthPoint()
+
+# fourthPoint()
+
+# 1966번 프린터 큐
+# 반복문 소팅과, enum 사용
+# 밸류와 맥스를 비교. 맥스가 있으면 뒤로 보냄
+def printer():
+    testNum = int(input())
+    for i in range(testNum):
+        N, M = map(int, input().split())
+        value = input().split(' ')
+        enumValue = list(enumerate(value))
+        resultValue = []
+
+        while len(enumValue):
+            if enumValue[0][1] != max(enumValue, key=lambda i: i[1])[1]:
+                enumValue.append(enumValue.pop(0))
+            else:
+                resultValue.append(enumValue.pop(0))
+
+        for c in range(len(resultValue)):
+            if resultValue[c][0] == int(M):
+                print(c+1)
+
+
+# printer()
