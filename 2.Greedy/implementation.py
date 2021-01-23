@@ -60,6 +60,7 @@ def fourthPoint():
         if y_list.count(y_list[i]) == 1:
             y = y_list[i]
     print(x, y)
+# fourthPoint()
 
 
 # fourthPoint()

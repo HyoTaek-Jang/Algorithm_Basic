@@ -71,6 +71,7 @@ def reverseCard():
                 compList.append(''.join(cardList))
                 cardList.clear()
                 cardList.append(i)
+
     compList.append(''.join(cardList))
 
     num_1 = 0
@@ -80,29 +81,31 @@ def reverseCard():
             num_1 += 1
         else:
             num_0 += 1
+
     print(num_0 if num_1 > num_0 else num_1)
-    '''
-    str = input()
-
-    count_zero = 0
-    count_one = 0
-    num = -1
-    next = 0
-    
-    for i in range(0, len(str)):
-        next = int(str[i])
-        if num != next:
-            if next == 0:
-                count_zero += 1
-            else:
-                count_one += 1
-        num = next
-    
-    print(min(count_zero, count_one))
-    '''
-
-
 # reverseCard()
+
+'''
+# 백준 그리디 1번
+a= input()
+count0,count1 = 0,0
+if a[0] == '1': #첫번째가 1이면 0으로 바뀌는거 1번
+    count0 = 1
+else: #첫번쨰가 0이면 1로 어쨌든 바뀌는거 1번
+    count1 =1
+for i in range(1,len(a)):
+    if a[i] != a[i-1]:
+        if a[i] == '1':
+            count0 += 1
+        else:
+            count1 +=1
+if count0 > count1:
+    print(count1)
+else:
+    print(count0)
+'''
+
+
 
 # 12931번 두 배 더하기
 # 값을 계속 2씩 나눔. 만약 홀수가 있을 시 -1을 함.
@@ -125,4 +128,4 @@ def plusmul():
     print(count)
 
 
-plusmul()
+# plusmul()
