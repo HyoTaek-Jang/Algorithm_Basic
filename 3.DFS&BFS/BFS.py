@@ -80,4 +80,8 @@ def mazeCheck(board, i, v):
         pass
 
 
-maze()
+# maze()
+
+# 백준 14502번 연구소
+# 0 빈칸 1 벽 2 바이러스
+# 2에서 주위로 연결시키고
