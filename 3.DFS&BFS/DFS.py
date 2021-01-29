@@ -2,7 +2,9 @@
 DFS, BFS는 그래프 탐색 알고리즘
 자주 등장하는 유형
 '''
+import copy
 from collections import deque
+from itertools import permutations, combinations
 
 '''
 스택 : 선입후출
@@ -88,4 +90,80 @@ def nearCheck(board, i, v):
     except IndexError:
         pass
 
+
 # icecream()
+
+# 백준 14502번 연구소
+# 시부레 진짜 아오 너무 힘드네
+# 처음엔 어케 벽을 막을까 고민하다가 그냥 모든 경우에서 max를 구하는거로 변경
+
+
+
+def virus():
+    N, M = map(int, input().split(' '))
+
+    room = []
+    idx = []
+    count = []
+    for i in range(N):
+        row = list(map(int, input().split(' ')))
+        room.append(row)
+        for j in range(M):
+            if room[i][j] == 0:
+                idx.append((i, j))
+
+    combiIdx = list(combinations(idx, 3))
+
+
+    for k in range(len(combiIdx)):
+        copyRoom = copy.deepcopy(room)
+        goLoop = True
+        for i in range(3):
+            if copyRoom[combiIdx[k][i][0]][combiIdx[k][i][1]] != 0:
+                goLoop = False
+                break
+            copyRoom[combiIdx[k][i][0]][combiIdx[k][i][1]] = 1
+
+        if goLoop:
+            for i in range(N):
+                for j in range(M):
+                    if copyRoom[i][j] == 2:
+                        copyRoom[i][j] = 3
+                        infection((i, j), copyRoom)
+            count.append(sum([row.count(0) for row in copyRoom]))
+
+    print(max(count))
+
+
+def infection(idx, room):
+    try:
+        newIdx = (idx[0] + 1, idx[1])
+        if room[newIdx[0]][newIdx[1]] == 0 and newIdx[0] >= 0 and newIdx[1] >= 0:
+            room[newIdx[0]][newIdx[1]] = 3
+            infection(newIdx, room)
+    except IndexError:
+        pass
+    try:
+        newIdx = (idx[0] - 1, idx[1])
+        if room[newIdx[0]][newIdx[1]] == 0 and newIdx[0] >= 0 and newIdx[1] >= 0:
+            room[newIdx[0]][newIdx[1]] = 3
+            infection(newIdx, room)
+    except IndexError:
+        pass
+    try:
+        newIdx = (idx[0], idx[1] + 1)
+        if room[newIdx[0]][newIdx[1]] == 0 and newIdx[0] >= 0 and newIdx[1] >= 0:
+            room[newIdx[0]][newIdx[1]] = 3
+            infection(newIdx, room)
+    except IndexError:
+        pass
+    try:
+        newIdx = (idx[0], idx[1] - 1)
+        if room[newIdx[0]][newIdx[1]] == 0 and newIdx[0] >= 0 and newIdx[1] >= 0:
+            room[newIdx[0]][newIdx[1]] = 3
+            infection(newIdx, room)
+    except IndexError:
+        pass
+
+
+virus()

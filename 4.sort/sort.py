@@ -85,7 +85,6 @@ def change():
     N,K = map(int, input().split(' '))
     arrayA = list(map(int, input().split(' ')))
     arrayB = list(map(int, input().split(' ')))
-    print(arrayA)
 
     for i in range(K):
         maxIndexB = arrayB.index(max(arrayB))
