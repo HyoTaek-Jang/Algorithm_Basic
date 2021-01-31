@@ -98,7 +98,6 @@ def nearCheck(board, i, v):
 # 처음엔 어케 벽을 막을까 고민하다가 그냥 모든 경우에서 max를 구하는거로 변경
 
 
-
 def virus():
     N, M = map(int, input().split(' '))
 
@@ -113,7 +112,6 @@ def virus():
                 idx.append((i, j))
 
     combiIdx = list(combinations(idx, 3))
-
 
     for k in range(len(combiIdx)):
         copyRoom = copy.deepcopy(room)
@@ -138,32 +136,76 @@ def virus():
 def infection(idx, room):
     try:
         newIdx = (idx[0] + 1, idx[1])
-        if room[newIdx[0]][newIdx[1]] == 0 and newIdx[0] >= 0 and newIdx[1] >= 0:
+        if room[newIdx[0]][newIdx[1]] == 0 and newIdx[0] >= 0 and newIdx[
+            1] >= 0:
             room[newIdx[0]][newIdx[1]] = 3
             infection(newIdx, room)
     except IndexError:
         pass
     try:
         newIdx = (idx[0] - 1, idx[1])
-        if room[newIdx[0]][newIdx[1]] == 0 and newIdx[0] >= 0 and newIdx[1] >= 0:
+        if room[newIdx[0]][newIdx[1]] == 0 and newIdx[0] >= 0 and newIdx[
+            1] >= 0:
             room[newIdx[0]][newIdx[1]] = 3
             infection(newIdx, room)
     except IndexError:
         pass
     try:
         newIdx = (idx[0], idx[1] + 1)
-        if room[newIdx[0]][newIdx[1]] == 0 and newIdx[0] >= 0 and newIdx[1] >= 0:
+        if room[newIdx[0]][newIdx[1]] == 0 and newIdx[0] >= 0 and newIdx[
+            1] >= 0:
             room[newIdx[0]][newIdx[1]] = 3
             infection(newIdx, room)
     except IndexError:
         pass
     try:
         newIdx = (idx[0], idx[1] - 1)
-        if room[newIdx[0]][newIdx[1]] == 0 and newIdx[0] >= 0 and newIdx[1] >= 0:
+        if room[newIdx[0]][newIdx[1]] == 0 and newIdx[0] >= 0 and newIdx[
+            1] >= 0:
             room[newIdx[0]][newIdx[1]] = 3
             infection(newIdx, room)
     except IndexError:
         pass
 
 
-virus()
+# virus()
+
+# 백준 단지번호 붙이기 2667번
+def apratment():
+    M = int(input())
+
+    apart = []
+    count = []
+
+    for i in range(M):
+        apart.append(list(map(int, [i for i in input()])))
+
+    for i in range(M):
+        for j in range(M):
+            if apart[i][j] == 1:
+                count.append(checkNear(apart, (i, j), 0))
+
+    print(len(count))
+    count.sort()
+    for i in count:
+        print(i)
+
+
+def checkNear(apt, idx, count):
+    movex = [0, 0, 1, -1]
+    movey = [1, -1, 0, 0]
+    apt[idx[0]][idx[1]] = 3
+    count += 1
+    for i in range(4):
+        try:
+            if apt[idx[0] + movey[i]][idx[1] + movex[i]] == 1 and idx[0] + \
+                    movey[i] >= 0 and idx[1] + movex[i] >= 0:
+                count = checkNear(apt, (idx[0] + movey[i], idx[1] + movex[i]),
+                                  count)
+        except IndexError:
+            pass
+
+    return count
+
+
+apratment()
