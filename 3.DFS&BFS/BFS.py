@@ -50,8 +50,9 @@ def maze():
 
     print(count)
 
+
 def mazeCheck(board, i, v):
-    if i==len(board)-1 and v==len(board[0])-1:
+    if i == len(board) - 1 and v == len(board[0]) - 1:
         return board[i][v]
 
     try:
@@ -82,6 +83,36 @@ def mazeCheck(board, i, v):
 
 # maze()
 
-# 백준 14502번 연구소
-# 0 빈칸 1 벽 2 바이러스
-# 2에서 주위로 연결시키고
+# 백준 단지번호 붙이기 2667번
+def apratment():
+    M = int(input())
+
+    apart = []
+    count = []
+    movex = [0, 0, 1, -1]
+    movey = [1, -1, 0, 0]
+
+    for i in range(M):
+        apart.append(list(map(int, [i for i in input()])))
+
+    for i in range(M):
+        for j in range(M):
+            if apart[i][j] == 1:
+                curCount = 0
+                near = deque([(i, j)])
+                apart[i][j] = 3
+                while near:
+                    cur = near.popleft()
+                    curCount += 1
+                    for k in range(4):
+                        if 0<= cur[0] + movey[k] < M and 0<= cur[1] + movex[k] < M and apart[cur[0] + movey[k]][cur[1] + movex[k]] == 1:
+                            apart[cur[0] + movey[k]][cur[1]+ movex[k]] = 3
+                            near.append((cur[0] + movey[k], cur[1] + movex[k]))
+                count.append(curCount)
+
+    print(len(count))
+    count.sort()
+    for i in count:
+        print(i)
+
+apratment()
