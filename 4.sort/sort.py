@@ -2,6 +2,7 @@
 정렬 알고리즘 : 특정한 기준에 따라 순서대로 나열 하는 것
 문제 상황에 따라 적절한 정렬 알고리즘이 공식처럼 사용함.
 '''
+from sys import stdin
 
 '''
 선택정렬
@@ -115,31 +116,53 @@ def combine():
 # combine()
 
 # 신입 사원 1946번
+# 배운점.... sys에서 stdin.readline()이 훨씬 빠르다...
 def recruit():
-    case = int(input())
-    countList = []
+    case = int(stdin.readline())
     for _ in range(case):
-        M = int(input())
+        M = int(stdin.readline())
         count = 0
         xlist = []
         ylist = []
 
         for i in range(M):
-            x, y = (map(int, input().split()))
-            xlist.append((i,x,y))
+            x, y = (map(int, stdin.readline().split()))
+            xlist.append((i, x, y))
             ylist.append(y)
 
-        xlist.sort(reverse=True, key=lambda x: x[1])
+        b = sorted(xlist, reverse=True, key=lambda x: x[1])
         ylist.sort()
-        length = len(xlist)
 
-        for i in range(length):
-            if xlist[i][2] == ylist[0]:
+        for i in range(M):
+            if b[i][2] == ylist[0]:
                 count += 1
-            ylist.remove(xlist[i][2])
+            ylist.remove(b[i][2])
+        print(count)
 
-        countList.append(count)
-    for i in countList:
-        print(i)
 
 recruit()
+
+'''
+def recruit():
+    case = int(input())
+    for _ in range(case):
+        M = int(input())
+        count = 1
+        xlist = []
+
+        for i in range(M):
+            x, y = (map(int, input().split()))
+            xlist.append((x, y))
+
+        b = sorted(xlist, key=lambda x: x[0])
+        min = b[0][1]
+        for i in range(1,M):
+            if b[i][1] < min:
+                count += 1
+                min = b[i][1]
+        print(count)
+
+
+recruit()
+
+'''
