@@ -32,6 +32,7 @@ def sort_insert():
                 break
     print(array)
 
+
 sort_insert()
 
 '''
@@ -51,16 +52,19 @@ sort_insert()
 정렬된 놈에게 퀵소트하면 최악... 
 근데 라이브러리는 최소 NlogN을 보장함 
 '''
+
+
 def quick_sort(arr):
-    if len(arr)<=1:
+    if len(arr) <= 1:
         return arr
     pivot = arr[0]
     tail = arr[1:]
-    left = [i for i in tail if pivot >= i ]
-    right = [i for i in tail if pivot < i ]
+    left = [i for i in tail if pivot >= i]
+    right = [i for i in tail if pivot < i]
     return quick_sort(left) + [pivot] + quick_sort(right)
 
-a = quick_sort([1,0,3,2,6,5,8,5,7])
+
+a = quick_sort([1, 0, 3, 2, 6, 5, 8, 5, 7])
 print(a)
 
 '''
@@ -80,16 +84,62 @@ print(a)
 퀵이랑 계수가 젤 난듯
 '''
 
+
 # 문제> 두 배열의 원소 교체
 def change():
-    N,K = map(int, input().split(' '))
+    N, K = map(int, input().split(' '))
     arrayA = list(map(int, input().split(' ')))
     arrayB = list(map(int, input().split(' ')))
 
     for i in range(K):
         maxIndexB = arrayB.index(max(arrayB))
         minIndexA = arrayA.index(min(arrayA))
-        arrayA[minIndexA], arrayB[maxIndexB] = arrayB[maxIndexB], arrayA[minIndexA]
+        arrayA[minIndexA], arrayB[maxIndexB] = arrayB[maxIndexB], arrayA[
+            minIndexA]
     print(sum(arrayA))
 
+
 # change()
+
+# 백준 11728번 배열 합치기
+def combine():
+    M, N = input().split(' ')
+    listA = list(map(int, input().split(' ')))
+    listB = list(map(int, input().split(' ')))
+    result = listA + listB
+    result.sort()
+    for i in result:
+        print(i, end=' ')
+
+
+# combine()
+
+# 신입 사원 1946번
+def recruit():
+    case = int(input())
+    countList = []
+    for _ in range(case):
+        M = int(input())
+        count = 0
+        xlist = []
+        ylist = []
+
+        for i in range(M):
+            x, y = (map(int, input().split()))
+            xlist.append((i,x,y))
+            ylist.append(y)
+
+        xlist.sort(reverse=True, key=lambda x: x[1])
+        ylist.sort()
+        length = len(xlist)
+
+        for i in range(length):
+            if xlist[i][2] == ylist[0]:
+                count += 1
+            ylist.remove(xlist[i][2])
+
+        countList.append(count)
+    for i in countList:
+        print(i)
+
+recruit()
