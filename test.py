@@ -1,18 +1,17 @@
-def solution(strings, n):
-    temp = sorted(strings, key=lambda x: x[n:])
-    # 인덱스 같은 애들 정렬
-    targetList = []
-    for i in temp:
-        if not i[n] in targetList:
-            targetList += i[n]
+from itertools import combinations
 
-    sortList = [[] for _ in range(len(targetList))]
 
-    print(sortList)
-    for i in temp:
-        sortList[targetList.index(i[n])].append(i)
+def solution(number, k):
+    length = [i for i in range(len(number))]
+    _numList = []
 
-    print(sortList)
-    answer = ''
-    return answer
-solution(['sum','asdf','vcxzv', "dcabvabs","auasdf"], 2)
+    for i in combinations(length, len(number)-k):
+        print(i)
+        _numList.append(''.join(number[j] for j in i))
+    _numList.sort(reverse=True)
+    return _numList[0]
+
+
+# 젤 큰 수가 처음 그다음이 그다음
+
+print(solution('1234', 2))

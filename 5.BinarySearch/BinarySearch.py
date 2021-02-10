@@ -85,11 +85,29 @@ def getCount():
 
     left = bisect.bisect_left(num, N)
     right = bisect.bisect_right(num, N)
-    count = right-left
+    count = right - left
 
     # count = num.count(N)
     if count == 0:
         return print(-1)
     print(count)
 
-getCount()
+
+# getCount()
+
+def binarySearh(numList, target):
+    min = 0
+    max = len(numList) - 1
+
+    while min <= max:
+        mid = (min + max) // 2
+        if numList[mid] > target:
+            max = mid - 1
+        elif numList[mid] == target:
+            return mid
+        else:
+            min = mid + 1
+    return -1
+
+
+print(binarySearh([1, 5, 7, 8, 9, 13, 67], 1))
