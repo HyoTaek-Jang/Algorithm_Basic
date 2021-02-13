@@ -110,4 +110,30 @@ def binarySearh(numList, target):
     return -1
 
 
-print(binarySearh([1, 5, 7, 8, 9, 13, 67], 1))
+# print(binarySearh([1, 5, 7, 8, 9, 13, 67], 1))
+
+# 백준 1365번 꼬인 전깃줄
+
+def electronic():
+    M = int(sys.stdin.readline())
+    sticks = list(map(int, sys.stdin.readline().split()))
+    sticks = [i - 1 for i in sticks]
+    enumSticks = list(enumerate(sticks))
+
+    stick = [0,0,0]
+
+    for i in enumSticks:
+        if i[0] - i[1] > 0:
+            stick[0] += 1
+        elif i[0] - i[1] < 0:
+            stick[1] += 1
+        else:
+            stick[2] += 1
+
+
+
+
+    print(result)
+
+
+electronic()
