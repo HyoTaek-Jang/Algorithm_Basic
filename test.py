@@ -1,17 +1,17 @@
-from itertools import combinations
+cycle = int(input())
+count = 0
 
 
-def solution(number, k):
-    length = [i for i in range(len(number))]
-    _numList = []
+for i in range (cycle):
+    a, b = map(int, input().split())
+    A = list(map(int, input().split()))
+    B = list(map(int, input().split()))
+    A.sort()
+    B.sort()
 
-    for i in combinations(length, len(number)-k):
-        print(i)
-        _numList.append(''.join(number[j] for j in i))
-    _numList.sort(reverse=True)
-    return _numList[0]
+    for k in range(a):
+        for j in range(b):
+            if A[k] > B[j]:
+                count = count + 1
 
-
-# 젤 큰 수가 처음 그다음이 그다음
-
-print(solution('1234', 2))
+    print(count)

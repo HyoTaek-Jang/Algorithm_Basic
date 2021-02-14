@@ -125,7 +125,7 @@ def makeOne(x):
 # d[3] = 1
 # d[4] = 2
 # d[5] = 1
-
+#
 # print(makeOne(N))
 
 
@@ -136,14 +136,15 @@ def money():
     for _ in range(K[0]):
         unit.append(int(sys.stdin.readline()))
 
-    memo = [0] * (K[1]+1)
+    memo = [0] * (K[1] + 1)
 
-    for i in range(1, K[1]+1):
+    for i in range(1, K[1] + 1):
         for j in unit:
-            if i-j == 0:
+            if i - j == 0:
                 memo[i] = 1
-            elif i-j >= 0 and memo[i-j] != -1:
-                memo[i] = min(memo[i-j]+1, memo[i]) if memo[i] != 0 else memo[i-j]+1
+            elif i - j >= 0 and memo[i - j] != -1:
+                memo[i] = min(memo[i - j] + 1, memo[i]) if memo[i] != 0 else \
+                    memo[i - j] + 1
 
         if memo[i] == 0:
             memo[i] = -1
@@ -151,4 +152,39 @@ def money():
     return memo[K[1]]
 
 
-print(money())
+# print(money())
+
+
+def gold():
+    M = int(sys.stdin.readline())
+
+    for _ in range(M):
+        row, col = map(int, sys.stdin.readline().split(' '))
+        gold = list(map(int, sys.stdin.readline().split(' ')))
+        goldMap = []
+
+        for i in range(0, len(gold), col):
+            goldMap.append(gold[i:i + col])
+
+        dp = [[0 for _ in range(col)] for _ in range(row)]
+        move = [0, -1, 1]
+
+        for i in range(row):
+            dp[i][0] = goldMap[i][0]
+
+        for i in range(1, col):
+            for j in range(row):
+                temp = []
+                for k in move:
+                    if 0 <= (j + k) < row:
+                        temp.append(dp[j + k][i - 1])
+                dp[j][i] = max(temp) + goldMap[j][i]
+
+        result = []
+        for i in range(row):
+            result.append(dp[i][col - 1])
+
+        return max(result)
+
+
+print(gold())
