@@ -66,6 +66,7 @@ def bottomUpfibo(x):
     return d[x]
 
 
+# 나동빈 개미전사
 def antman():
     d = [0] * 100
     N = int(sys.stdin.readline())
@@ -89,7 +90,7 @@ def antman():
 
 # print(antman())
 
-
+# 나동빈 1로 만들기
 def makeOne(x):
     select = []
     if x % 5 == 0 and d[x // 5] == 0:
@@ -128,7 +129,7 @@ def makeOne(x):
 #
 # print(makeOne(N))
 
-
+# 나동빈 화폐
 def money():
     K = list(map(int, sys.stdin.readline().split(' ')))
     unit = []
@@ -154,7 +155,7 @@ def money():
 
 # print(money())
 
-
+# 나동빈 금광
 def gold():
     M = int(sys.stdin.readline())
 
@@ -187,4 +188,23 @@ def gold():
         return max(result)
 
 
-print(gold())
+# print(gold())
+
+
+# 나동빈 병사 배치하기 백준 18353번
+def soldier():
+    N = int(sys.stdin.readline())
+    army = list(map(int, sys.stdin.readline().split(' ')))
+
+    dp = [1] * N
+
+    army.reverse()
+
+    for i in range(1, N):
+        for j in range(0, i):
+            if army[i] > army[j]:
+                dp[i] = dp[j] + 1 if dp[j] + 1 >= dp[i] else dp[i]
+
+    return N-max(dp)
+
+print(soldier())
