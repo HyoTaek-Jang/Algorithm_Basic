@@ -27,7 +27,7 @@ def solution(number, k):
             if number[i] == 9: break
         _max = max(temp)
         idx = number.index(_max)
-        answer += _max
+        answer += _maxs
         number = number[idx+1:]
         k -= idx
     answer += number    
