@@ -112,7 +112,7 @@ def binarySearh(numList, target):
 
 # print(binarySearh([1, 5, 7, 8, 9, 13, 67], 1))
 
-# 백준 1365번 꼬인 전깃줄
+# 백준 1365번 꼬인 전깃줄 ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ1등ㅋㅋㅋㅋㅋㅋㅋㅋㅋ
 
 def electronic():
     M = int(sys.stdin.readline())
@@ -131,7 +131,7 @@ def electronic():
     print(M-len(dp))
 
 
-electronic()
+# electronic()
 
 
 # 백준 7795번 먹을 것인가 먹힐 것인가 오!!!!!!!대박 나 2등ㅋㅋㅋ
