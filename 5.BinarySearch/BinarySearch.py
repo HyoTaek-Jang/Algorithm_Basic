@@ -117,21 +117,21 @@ def binarySearh(numList, target):
 def electronic():
     M = int(sys.stdin.readline())
     sticks = list(map(int, sys.stdin.readline().split()))
-    sticks = [i - 1 for i in sticks]
-    enumSticks = list(enumerate(sticks))
 
-    stick = [0, 0, 0]
+    dp = []
+    dp.append(sticks[0])
 
-    for i in enumSticks:
-        if i[0] - i[1] > 0:
-            stick[0] += 1
-        elif i[0] - i[1] < 0:
-            stick[1] += 1
+    for i in range(1, len(sticks)):
+        if sticks[i] > dp[-1]:
+            dp.append(sticks[i])
         else:
-            stick[2] += 1
+            idx = bisect.bisect_left(dp, sticks[i])
+            dp[idx] = sticks[i]
+
+    print(M-len(dp))
 
 
-# electronic()
+electronic()
 
 
 # 백준 7795번 먹을 것인가 먹힐 것인가 오!!!!!!!대박 나 2등ㅋㅋㅋ
