@@ -168,6 +168,7 @@ def gold():
             goldMap.append(gold[i:i + col])
 
         dp = [[0 for _ in range(col)] for _ in range(row)]
+
         move = [0, -1, 1]
 
         for i in range(row):

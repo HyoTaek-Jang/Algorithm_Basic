@@ -131,9 +131,24 @@ def electronic():
             stick[2] += 1
 
 
+# electronic()
 
 
-    print(result)
+# 백준 7795번 먹을 것인가 먹힐 것인가
+
+def eat():
+    testCase = int(sys.stdin.readline())
+    M, N = (map(int, sys.stdin.readline().split()))
+    listA = list(map(int, sys.stdin.readline().split()))
+    listB = list(map(int, sys.stdin.readline().split()))
 
 
-electronic()
+    print(listA)
+    print(listB)
+
+'''
+M이랑 N 소트하고
+N 인덱스에 따라서 M의 갯수를 정하는?
+N소트하고 M 값마다 bisect?
+'''
+eat()

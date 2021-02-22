@@ -1,5 +1,5 @@
 #
-'''
+''' try1
 def solution(participant, completion):
     i=0
     while len(completion):
@@ -11,21 +11,23 @@ def solution(participant, completion):
     return participant[0]
 '''
 
-''' 차집합 실패
+''' try2 차집합 실패
 def solution(participant, completion):
     p = set(participant)
     c = set(completion)
-    p-c
+    answer = p-c
+    return answer[0]
 '''
 
-
+# 성공
 def solution(participant, completion):
     
     participant.sort()
     completion.sort()
-    
+
     for i in range(len(completion)):
         if participant[i] != completion[i]:
             return participant[i]
     
     return participant[-1]
+

@@ -23,4 +23,27 @@ LIS는 보통 순증가하는 부분수열을 대상으로 한다.
 그 이전의 숫자가 나보다는 작은 숫자라는 것을 말해주고, 또 여기서는 길이만 구하기 때문에 앞선 콜에서 이전값의 길이 1만을 계속
 더해나가면 되기 때문이다.
 
+하튼 이중 포문을 쓰면 N^2으로 표현이 되지만 너무 성능상 문제가 있기에
+
+NlogN을 위해 다시 도전!
+
+살펴보니까 NLogN으로 만들기 위해 바이너리 서치를 쓰면 Lis 개수는 구할 수 있는데 수열은 못구함
 '''
+import bisect
+
+def LIS(lis):
+    dp = []
+
+    dp.append(lis[0])
+
+    for i in range(1, len(lis)):
+        if lis[i] > dp[-1]:
+            dp.append(lis[i])
+        else:
+            idx = bisect.bisect_left(dp, lis[i])
+            dp[idx] = lis[i]
+
+    return len(dp)
+
+
+print(LIS([5, 2, 8, 11, 34, 13, 99]))
