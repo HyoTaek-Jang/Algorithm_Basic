@@ -120,7 +120,7 @@ def electronic():
     sticks = [i - 1 for i in sticks]
     enumSticks = list(enumerate(sticks))
 
-    stick = [0,0,0]
+    stick = [0, 0, 0]
 
     for i in enumSticks:
         if i[0] - i[1] > 0:
@@ -134,21 +134,28 @@ def electronic():
 # electronic()
 
 
-# 백준 7795번 먹을 것인가 먹힐 것인가
-
-def eat():
-    testCase = int(sys.stdin.readline())
-    M, N = (map(int, sys.stdin.readline().split()))
-    listA = list(map(int, sys.stdin.readline().split()))
-    listB = list(map(int, sys.stdin.readline().split()))
-
-
-    print(listA)
-    print(listB)
-
+# 백준 7795번 먹을 것인가 먹힐 것인가 오!!!!!!!대박 나 2등ㅋㅋㅋ
 '''
 M이랑 N 소트하고
 N 인덱스에 따라서 M의 갯수를 정하는?
 N소트하고 M 값마다 bisect?
 '''
-eat()
+
+def eat():
+    testCase = int(sys.stdin.readline())
+
+    for _ in range(testCase):
+        M, N = (map(int, sys.stdin.readline().split()))
+        listA = list(map(int, sys.stdin.readline().split()))
+        listB = list(map(int, sys.stdin.readline().split()))
+
+        listB.sort()
+        result = 0
+
+        for i in listA:
+            result += bisect.bisect_left(listB, i)
+
+        print(result)
+
+
+# eat()
