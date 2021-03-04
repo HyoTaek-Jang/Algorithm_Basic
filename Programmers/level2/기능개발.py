@@ -12,10 +12,9 @@ def solution(progresses, speeds):
             progresses.popleft()
             speeds.popleft()
             result += 1
-        if result != 0 : answer.append(result)
+        if result != 0: answer.append(result)
+
         for i in range(len(progresses)):
             progresses[i] += speeds[i]
 
     return answer
-
-solution([93,30,55],[1,30,5])
