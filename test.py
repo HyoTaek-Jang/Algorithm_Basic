@@ -1,21 +1,8 @@
-import collections
-
-
-def solution(progresses, speeds):
+def solution(array, commands):
     answer = []
-    progresses = collections.deque(progresses)
-    speeds = collections.deque(speeds)
-
-    while (progresses):
-        result = 0
-        while progresses and progresses[0] >= 100:
-            progresses.popleft()
-            speeds.popleft()
-            result += 1
-        if result != 0 : answer.append(result)
-        for i in range(len(progresses)):
-            progresses[i] += speeds[i]
-
+    for i in commands:
+        temp = sorted(array[i[0]-1:i[1]-1])
+        answer.append(temp[i[2]])
     return answer
 
-solution([93,30,55],[1,30,5])
+solution([1,5,2,6,3,7,4],[[2,5,3]])
