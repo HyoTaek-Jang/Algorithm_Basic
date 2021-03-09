@@ -40,4 +40,15 @@
     가장 highest 오더를 구함.
 
     Big O
-    최악의 경우를 보여줌.
+    최악의 경우를 보여줌. upper bound
+    ex) f(n) = n^3 + 100n^2, g(n) = n^3
+    [O(g)는 f를 포함한다] we claim that c>0, n0>=9 that make n^3 + 100^2 <= c*n^3 holds for all n>=n0
+    1. n0, c를 찾아야함. 감으로..ㅋ
+
+    러닝타임 말할땐 워스트케이스가 이렇다~ 말하는게 정확 -> 어떤 상황에서도 최소 이정도는 보장한다라는 뜻
+
+    Big Omega
+    최소 이만큼 걸려! 여기서 더 안좋아질지는 몰라~ lower bound
+
+    Big Theta
+    sandwiched, 더 타이트함. upper lower 모두 보여줌
