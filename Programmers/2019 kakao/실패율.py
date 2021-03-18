@@ -14,4 +14,5 @@ def solution(N, stages):
     checkStage.sort(reverse=True, key=lambda x: x[1])
 
     answer = [j[0] + 1 for j in checkStage]
+
     return answer
