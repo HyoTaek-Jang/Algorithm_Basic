@@ -5,7 +5,7 @@ def solution(N, stages):
         for j in range(0, i):
             checkStage[j] += 1
 
-            for k in range(0, N):
+    for k in range(0, N):
         if checkStage[k + 1] == 0:
             break
         checkStage[k] = 1 - (checkStage[k + 1] / checkStage[k])
