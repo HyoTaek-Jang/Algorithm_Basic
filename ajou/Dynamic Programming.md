@@ -60,3 +60,36 @@ X4 = <A,B,C,D> 이런식으로 i번째 프리픽스는 서브시퀀스로 표현
 ### LCS의 옵티멀 서브스트럭쳐
 
 ### cost of optimal solution
+
+커먼 서브시퀀스의 가장 긴 길이를 비교하고자 하는 옵티멀 솔루션 값으로 정의함.
+그래서 매 순간마다 옵티멀한 값을 c[i,j]에 저장하면됨 베이스 케이스는 0
+
+c[i,j] =
+if i=0 j=0 : 0 // empty셋이기에
+if i,j>0 and xi = yi: c[i-1,j-1]+1
+if i,j>0 and xi != y1: max(c[i-1,j],c[i,j-1])
+
+### Optimal substructure
+
+case 1 Xm != Yn
+
+1. Zk != Yn -> Z is an LCS of Xm and Yn-1
+2. Zk != Xm -> Z is an LCS of Xm-1 and Yn
+
+case 2 Xm = Ym
+마지막 값이 같으면 둘이 같기에 LCS에 포함됨 그래서 둘다 빼버리고 옵티멀한 LCS 값을 구함
+
+### recursive approach for LCS
+
+n = x길이, m = y길이
+top down, 2^(n+m)
+같은경우가 1개도 없으면 ㅇㅋ? 근데 한개만 0되도 끝이니까 -> 2^n. n이 더 짧음
+
+### Dp for LCS
+
+디피는 테이블에 적으면서 작은 크기에서 점점 커지는거지. 빌드업
+
+수도코드는 강의노트 참고!
+
+테이블 만드는 런타임은 m\*n
+프린트하는 시간은 m+n
