@@ -13,4 +13,4 @@ def COMPUTE_SMALLEST_H(x):
     return min(rule_1, rule_2)
 
 
-print(COMPUTE_SMALLEST_H(34.5))
+print(COMPUTE_SMALLEST_H(68.001))
