@@ -1,16 +1,19 @@
+class Stack():
+    def __init__(self):
+        self.top=[]
 
-def COMPUTE_SMALLEST_H(x):
-    # 초기값 세팅
-    rule_1 = x
-    rule_2 = x
-    # 1번 조건으로 줄이고
-    if (x - 34) > 0:
-        rule_1 = COMPUTE_SMALLEST_H(x - 34)
-    # 2번 조건으로 줄이고
-    if ((x - 11) / 2) > 0:
-        rule_2 = COMPUTE_SMALLEST_H((x - 11) / 2)
-    # 더 작은거 return
-    return min(rule_1, rule_2)
+    def push(self,item):
+        self.top.append(item)
+
+    def peek(self):
+        print(self.top[-1])
 
 
-print(COMPUTE_SMALLEST_H(34.5))
+
+def eval():
+    s = Stack()
+
+    s.push(1234)
+    s.peek()
+
+    
