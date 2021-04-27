@@ -1,72 +1,64 @@
-#!/usr/bin/env python
-# coding: utf-8
+'''
+과제1-클래스 구조 ver
+'''
 
-# In[4]:
 
-
-class Stack:
-    def __init__(self):
-        self.top = []
+# Stack 클래스 설정
+class Stack():
+    def __init__(self, str):
+        self.str = str
+        self.str_list = list(str)
 
     def isEmpty(self):
-        return len(self.top) == 0
-
-    def size(self):
-        return len(self.top)
+        return len(self.str_list) == 0
 
     def clear(self):
-        self.top = []
-
-    def push(self, item):
-        self.top.append(item)
+        self.str_list = []
 
     def pop(self):
         if not self.isEmpty():
-            return self.top.pop(-1)
+            return self.str_list.pop(-1)
 
-    def peek(self):
-        if not self.isEmpty():
-            return self.top[-1]
+    def __str__(self):
+        return str(self.str_list[::-1])
+
+    def clear(self):
+        global str_list
+        str_list = []
+
+    # palindrome 함수
+    def palindrome(self):
+
+        for i in range(len(self.str_list)):
+            palindrome_list.append(self.str_list.pop())
+
+        if str_list_copy == palindrome_list:
+            return (0)
+        else:
+            return (1)
+
+        self.str_list.clear()
+        palindrome_list.clear()
 
 
-# In[5]:
+while True:
 
+    str = input("palindrome을 검사할 문장 입력:")
+    if str == "종료":
+        print("프로그램을 종료합니다")
+        break
 
-def Palindrome(string):
-    s = Stack()
-    length = len(string)
-    if length % 2 == 0:
-        for letter in string[:length // 2]:
-            s.push(letter)
-        for letter in string[length // 2:]:
-            item = s.pop()
-            if item != letter:
-                s.push(item)
+    str_list_copy = list(str)
+    palindrome_list = []
+    a = Stack(str)
+    b = a.palindrome()
+
+    if b == 0:
+        print("회문구조")
     else:
-        for letter in string[:length // 2]:
-            s.push(letter)
-        for letter in string[length // 2 + 1:]:
-            item = s.pop()
-            print(length // 2 + 1)
-            print(letter)
-            if item != letter:
-                s.push(item)
-    if len(s.top) != 0:
-        return print('False')
-    else:
-        return print('True')
+        print("회문구조가 아닙니다")
 
 
-# In[6]:
 
 
-print("회문을 검사할 단어를 입력하시오.")
-stack = Stack()
-letters = input()
-Palindrome(letters)
-while letters != '종료':
-    print("회문을 검사할 단어를 입력하시오.")
-    stack = Stack()
-    letters = input()
-    Palindrome(letters)
 
