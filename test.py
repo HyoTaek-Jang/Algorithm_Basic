@@ -1,37 +1,47 @@
-import sys
+def is_attack(i, j, board, N):
+    for k in range(1, i):
+        if board[k][j] == 1:
+            return True
 
-def sol(N):
-    d = [0]*1000
-    d[0] = 1
-    d[1] = 3
+    k = i - 1
+    l = j - 1
+    while k >= 1 and l >= 1:
+        if board[k][l] == 1:
+            return True
+        k = k - 1
+        l = l - 1
 
-    for i in range(2,N):
-        d[i] = d[i-1] + d[i-2]*3
+    k = i - 1
+    l = j + 1
+    while k >= 1 and l <= N:
+        if board[k][l] == 1:
+            return True
+        k = k - 1
+        l = l - 1
 
-    print(d[N-1]%796796)
 
-# sol(765)
+def N_Queen(row, n, N, board):
+    if n == 0:
+        return True
+    for j in range(1, N + 1):
+        if not is_attack(row, j, board, N):
+            board[row][j] = 1
+            if N_Queen(row + 1, n - 1, N, board):
+                return True
+            board[row][j] = 0
+    return False
 
-def sol2():
-    N,M = map(int, sys.stdin.readline().split())
 
-    token = [0]*N
-    money = [10001]*(M+1)
-    for i in range(N):
-        token[i] = int(sys.stdin.readline())
-    token.sort(reverse=True)
+def N_Queens_new(row, n, N, board):
+    result = N_Queen(row, n, N, board)
+    solution = []
+    if result:
+        for i in range(1, N+1):
+            for j in range(1, N+1):
+                if board[i][j] == 1:
+                    solution.append((i, j))
+        print(solution)
 
-    for j in token: #7, 5, 3
-        if M-j >= 0:
-            money[j] = 1
 
-    for i in range(1,M+1): # i원일때 몇개가 필요한가 8 =  5 3
-        for j in token: #
-            if i-j >= 0 and money[i-j] > 0:
-                money[i] = min(money[i-j] + 1, money[i])
-
-    if money[M] == 10001:
-        print(-1)
-    print(money[M])
-
-# sol2()
+board = [[0] * 6 for i in range(6)]
+N_Queen_new(1, 5, 5, board)
