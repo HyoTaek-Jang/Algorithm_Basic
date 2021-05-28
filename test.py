@@ -1,47 +1,14 @@
-def is_attack(i, j, board, N):
-    for k in range(1, i):
-        if board[k][j] == 1:
-            return True
-
-    k = i - 1
-    l = j - 1
-    while k >= 1 and l >= 1:
-        if board[k][l] == 1:
-            return True
-        k = k - 1
-        l = l - 1
-
-    k = i - 1
-    l = j + 1
-    while k >= 1 and l <= N:
-        if board[k][l] == 1:
-            return True
-        k = k - 1
-        l = l - 1
-
-
-def N_Queen(row, n, N, board):
-    if n == 0:
+def subset_sum(A, s, k, r, B, w):
+    w[k] = 1
+    a = False
+    if s + A[k] == B:
         return True
-    for j in range(1, N + 1):
-        if not is_attack(row, j, board, N):
-            board[row][j] = 1
-            if N_Queen(row + 1, n - 1, N, board):
-                return True
-            board[row][j] = 0
-    return False
+    elif s + A[k] <= B:
+        a = subset_sum(A, s + A[k], k + 1, r - A[k], B, w)
+    if not a and s + r - A[k] >= B:
+        w[k] = 0
+        a = subset_sum(A, s, k + 1, r - A[k], B, w)
+    return a
 
 
-def N_Queens_new(row, n, N, board):
-    result = N_Queen(row, n, N, board)
-    solution = []
-    if result:
-        for i in range(1, N+1):
-            for j in range(1, N+1):
-                if board[i][j] == 1:
-                    solution.append((i, j))
-        print(solution)
-
-
-board = [[0] * 6 for i in range(6)]
-N_Queen_new(1, 5, 5, board)
+print(subset_sum([2, 3, 20, 27, 8], 0, 0, 60, 13, [0, 0, 0, 0, 0]))
