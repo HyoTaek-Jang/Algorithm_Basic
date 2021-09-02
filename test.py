@@ -1,7 +1,20 @@
-def palindrome(str):
-    for i in range(len(str)):
-        if str[i] != str[len(str)-1-i]:
-            return False
-    return True
+def sol():
+    str1 = "5"
+    str2 = "2 2 2 4 4"
 
-print(palindrome("abasba"))
+    num = int(str1)
+    people = list(map(int, str2.split()))
+    people.sort()
+
+    cnt = 0
+    check = 0
+
+    while check < num:
+        check += people[check]
+        if not check < num:
+            break
+        cnt += 1
+
+    print(cnt)
+
+sol()
