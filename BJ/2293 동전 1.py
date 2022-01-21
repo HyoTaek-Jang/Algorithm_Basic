@@ -1,42 +1,10 @@
-import copy
-import sys
+n, k = map(int, input().split())
+c = [int(input()) for i in range(n)] # 코인의 종류
+dp = [0 for i in range(k+1)] # 사이즈 k+1만큼의 리스트 선언
+dp[0] = 1 # 인덱스 0은 동전을 1개만 쓸 때의 경우의 수를 고려하기 위해 선언
 
-N, K = map(int, input().split())
-coins = []
-for _ in range(N):
-    coins.append(int(sys.stdin.readline()))
-
-coins.sort(reverse=True)
-
-dp = [[0] * N for _ in range(K+1)]
-for i in range(len(coins)):
-    dp[coins[i]][i] = 1
-
-for money in range(K+1):
-    for coin in range(len(coins)):
-        if 0 <= money - coins[coin]:
-            temp = copy.deepcopy(dp[money - coins[coin]])
-            temp[coin] += 1
-            if sum(dp[money]) == 0:
-                dp[money] = temp
-            else:
-                if sum(dp[money]) > sum(temp):
-                    dp[money] = temp
-
-
-print(dp[K])
-5
-11111
-2111
-221
-
-11111 111111
-11111 1112
-11111 122
-11111 5
-1112 5
-1112 122
-1112 1112
-122 122
-5 5
-22222
+for i in c:
+    for j in range(i, k+1):
+        # if j-i >= 0:
+        dp[j] += dp[j-i]
+print(dp[k])
