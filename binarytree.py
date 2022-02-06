@@ -20,7 +20,7 @@ class DoublyLinkedDeque:
         node = self.front
         count = 0
         while not node == None:
-            node = node.next
+            node = node.next_dest
             count += 1
         return count
 
@@ -29,7 +29,7 @@ class DoublyLinkedDeque:
         node = self.front
         while not node == None:
             print(node.data, end='')
-            node = node.next
+            node = node.next_dest
         print()
 
     def addFront(self, item):
@@ -51,7 +51,7 @@ class DoublyLinkedDeque:
     def deleteFront(self):
         if not self.isEmpty():
             data = self.front.data
-            self.front = self.front.next
+            self.front = self.front.next_dest
             if self.front == None:
                 self.rear = None
             else:
@@ -65,7 +65,7 @@ class DoublyLinkedDeque:
             if self.rear == None:
                 self.front = None
             else:
-                self.rear.next = None
+                self.rear.next_dest = None
             return data
 
 
