@@ -21,7 +21,7 @@ print(c, d, e)                          실수형 변수 3개 출력하는 예�
 print(f)                                문자열 1개 출력하는 예제
 '''
 
-# import sys
+import sys
 
 '''
       아래의 구문은 input.txt 를 read only 형식으로 연 후,
@@ -36,7 +36,7 @@ print(f)                                문자열 1개 출력하는 예제
 '''
 import copy
 
-# file = open("input.txt", "r")
+sys.stdin = open("input.txt", "r")
 
 T = int(input())
 
@@ -99,13 +99,21 @@ for test_case in range(1, T + 1):
         print("#" + str(test_case) + " " + str(0))
         continue
 
-    cases = []
+    start = 1
+    end = D
     choice = [i for i in range(D)]
-    for count in range(1, D + 1):
-        cases += combination([], choice, [], count)
-
-    for case in cases:
-        temp = copy.deepcopy(table)
-        if dfs(temp, case, 0, K):
-            print("#" + str(test_case) + " " + str(len(case)))
-            break
+    temp = -1
+    while start <= end:
+        mid = (start + end) // 2
+        cases = combination([], choice, [], mid)
+        flag = True
+        for case in cases:
+            temp_table = copy.deepcopy(table)
+            if dfs(temp_table, case, 0, K):
+                temp = mid
+                end = mid - 1
+                flag = False
+                break
+        if flag:
+            start = mid + 1
+    print("#" + str(test_case) + " " + str(temp))
