@@ -1,3 +1,5 @@
+import itertools
+
 def permutation(target, length):
     used = [0 for _ in range(len(target))]
     target = list(set(target))
@@ -18,5 +20,6 @@ def permutation(target, length):
     generate_permu([], used)
 
 
-permutation([1, 1, 2, 3, 4], 3
-            )
+permutation([1, 1, 2, 3, 4], 3)
+
+print(itertools.permutations([1,1,2,3,4],3))
