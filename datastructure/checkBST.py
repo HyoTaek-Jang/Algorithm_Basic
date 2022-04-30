@@ -19,5 +19,28 @@ def isBST(root, upper_bound_exist, lower_bound_exist, upper_bound, lower_bound):
                                                                                         root.value)
 
 
-bst = Node(4, Node(2), Node(6, None, Node(5)))
+def is_bst(node):
+    if node.left is None and node.right is None:
+        return True
+
+    left = node.left
+    right = node.right
+    left_result = True
+    right_result = True
+
+    if left is not None:
+        if node.value <= left.value:
+            return False
+        left_result = is_bst(left)
+
+    if right is not None:
+        if node.value >= right.value:
+            return False
+        right_result = is_bst(right)
+
+    return left_result and right_result
+
+
+bst = Node(4, Node(2), Node(6, None, Node(9)))
 print(isBST(bst, False, False, 0, 0))
+print(is_bst(bst))

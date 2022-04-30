@@ -21,5 +21,3 @@ def permutation(target, length):
 
 
 permutation([1, 1, 2, 3, 4], 3)
-
-print(itertools.permutations([1,1,2,3,4],3))

@@ -1,9 +1,26 @@
 from collections import deque
 
 
+#
+# def bfs(graph, start):
+#     visited = set()
+#     queue = deque()
+#     queue.append(start)
+#     visited.add(start)
+#
+#     while queue:
+#         current = queue.popleft()
+#         print(current)
+#
+#         for i in graph[current]:
+#             if i not in visited:
+#                 queue.append(i)
+#                 visited.add(i)
+
 def bfs(graph, start):
     visited = set()
     queue = deque()
+
     queue.append(start)
     visited.add(start)
 
@@ -11,10 +28,10 @@ def bfs(graph, start):
         current = queue.popleft()
         print(current)
 
-        for i in graph[current]:
-            if i not in visited:
-                queue.append(i)
-                visited.add(i)
+        for connect in graph[current]:
+            if connect not in visited:
+                queue.append(connect)
+                visited.add(connect)
 
 
 bfs({

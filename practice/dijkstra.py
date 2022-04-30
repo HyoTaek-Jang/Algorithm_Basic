@@ -1,5 +1,7 @@
 import heapq
 
+# 현재 방문하지 않은 노드에서 최소 값을 갈 수 있는 곳으로 이동
+# 방문 처리 및 연관된 값 변경
 
 def dijkstra(table, start):
     pq = [(0, start)]

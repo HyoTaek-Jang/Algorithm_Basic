@@ -92,6 +92,5 @@ class Assert:
     def assert_function(self, expected, *args):
         return self.func(*args) == expected
 
-
 test = Assert(binary_search)
 print(test.assert_function(2, arr, 9, 0, len(arr)-1))
